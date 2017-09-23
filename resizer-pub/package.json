@@ -1,0 +1,15 @@
+{
+  "name": "resizer-pub",
+  "version": "1.0.0",
+  "description": "publisher test",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Arnelito Cabinti",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^0.5.1",
+    "http": "0.0.0"
+  }
+}

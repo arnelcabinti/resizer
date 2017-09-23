@@ -1,0 +1,16 @@
+{
+  "name": "resizer-small",
+  "version": "1.0.0",
+  "description": "resize images to small",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Arnelito Cabinti",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^0.5.1",
+    "aws-sdk": "^2.122.0",
+    "sharp": "^0.18.4"
+  }
+}
