@@ -33,19 +33,18 @@ function uploadToS3(base64data){
     });
 }
 
-amqp.connect('amqp://'+rConfig.username+':'+rConfig.password+'@'+rConfig.host+':'+rConfig.port, function(err, conn) {
+amqp.connect(`amqp://${rConfig.username}:${rConfig.password}@${rConfig.host}:${rConfig.port}`, function(err, conn) {
     conn.createChannel(function(err, ch) {
-        var q = 'task_queue';
+        let q = 'task_queue';
         ch.assertQueue(q, {durable: true});
         ch.prefetch(1);
         console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", q);
         ch.consume(q, function(msg) {
-            var secs = msg.content.toString().split('.').length - 1;
-            
-            var getParams = {
-                Bucket : appConfig.aws.s3.bucket, 
-                Key    : "asset/golang.png"
-            }
+            let secs = msg.content.toString().split('.').length - 1,
+                getParams = {
+                   Bucket : appConfig.aws.s3.bucket, 
+                   Key    : "asset/golang.png"
+                }
            
             s3.getObject(getParams, function(err, data) {
                 // Handle any error and exit
