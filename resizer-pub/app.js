@@ -6,8 +6,8 @@ const http      = require('http'),
 
 
 var connect = function(callback){
-    var rConfig = appConfig.rabbitMQ;
-    amqp.connect('amqp://'+rConfig.username+':'+rConfig.password+'@'+rConfig.host+':'+rConfig.port, function(err, conn) {
+    let rConfig = appConfig.rabbitMQ;
+    amqp.connect(`amqp://${rConfig.username}:${rConfig.password}@${rConfig.host}:${rConfig.port}`, function(err, conn) {
         if (err) {
             console.error("[AMQP]", err.message);
             setTimeout(connect, 1000);
@@ -28,8 +28,8 @@ connect(function(conn){
             console.log('[Rabbitmq]', err);
             return;
         }
-        var q = 'task_queue';
-        var msg = process.argv.slice(2).join(' ') || "Hello World!";
+        let q = 'task_queue';
+        let msg = process.argv.slice(2).join(' ') || "Hello World!";
     
         ch.assertQueue(q, {durable: true});
         ch.sendToQueue(q, new Buffer(msg), {persistent: true});
